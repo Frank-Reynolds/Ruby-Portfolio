@@ -20,4 +20,20 @@ end
     end
   end
 
+  def edit
+  	@portfolio_item = Portfolio.find(params[:id])
+  end
+
+    def update
+    respond_to do |format|
+	@portfolio_item = Portfolio.find(params[:id])
+
+      if @portfolio_item.update(params.require(:portfolio).permit(:title, :subtitle, :body))
+        format.html { redirect_to portfolios_path, notice: 'Portfolio was successfully updated.' }
+      else
+        format.html { render :edit }
+      end
+    end
+  end
+
 end
