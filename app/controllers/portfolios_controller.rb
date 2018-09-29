@@ -40,4 +40,17 @@ end
   	@portfolio_item = Portfolio.find(params[:id])
   end
 
+  def destroy
+  	#preform the lookup
+  	@portfolio_item = Portfolio.find(params[:id])
+
+  	# destroy method is called on the item
+    @portfolio_item.destroy
+
+    #conduct redirect
+    respond_to do |format|
+      format.html { redirect_to portfolios_url, notice: 'Portfolio was successfully destroyed.' }
+    end
+  end
+
 end
